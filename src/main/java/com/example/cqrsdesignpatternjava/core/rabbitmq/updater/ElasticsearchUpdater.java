@@ -23,13 +23,12 @@ public class ElasticsearchUpdater {
     public ElasticsearchUpdater(RabbitMqReceiver rabbitMqReceiver, ElasticsearchService elasticsearchService, ObjectMapper objectMapper) throws Exception {
         this.elasticsearchService = elasticsearchService;
         this.objectMapper = objectMapper;
-
         rabbitMqReceiver.receive(CLASSIFIED_INSERTED_QUEUE, this::updateElasticsearchForNewClassified);
     }
 
     private void updateElasticsearchForNewClassified(String consumerTag, Delivery message) throws IOException {
         Classified classified = objectMapper.readValue(message.getBody(), Classified.class);
-
-        this.elasticsearchService.<Classified>insertDocument("classifieds", classified.getId().toString(), classified);
+        this.elasticsearchService.insertDocument("classifieds", classified.getId().toString(), classified);
     }
+
 }

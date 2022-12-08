@@ -6,5 +6,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public interface CommandHandler<TCommand extends Command> {
+
     CommandResult handle(TCommand command) throws IOException, TimeoutException;
+
 }

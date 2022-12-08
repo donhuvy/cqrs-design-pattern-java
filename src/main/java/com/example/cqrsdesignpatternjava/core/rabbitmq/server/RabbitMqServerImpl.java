@@ -15,12 +15,10 @@ public class RabbitMqServerImpl implements RabbitMqServer {
     private final Integer RABBITMQ_PORT = 5672;
     private final String RABBITMQ_USERNAME = "guest";
     private final String RABBITMQ_PASSWORD = "guest";
-
     private final ConnectionFactory connectionFactory;
 
     public RabbitMqServerImpl() {
         this.connectionFactory = new ConnectionFactory();
-
         connectionFactory.setHost(RABBITMQ_HOST);
         connectionFactory.setUsername(RABBITMQ_USERNAME);
         connectionFactory.setPassword(RABBITMQ_PASSWORD);

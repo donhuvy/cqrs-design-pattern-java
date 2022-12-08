@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CommandResult {
+
     private Boolean isSuccess;
     private String message;
+
 }

@@ -25,7 +25,6 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     private final ObjectMapper objectMapper;
     private final RestHighLevelClient restHighLevelClient;
 
-
     @Autowired
     public ElasticsearchServiceImpl(ObjectMapper objectMapper, ElasticsearchApiClient elasticsearchApiClient) {
         this.objectMapper = objectMapper;
@@ -35,11 +34,9 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
     @Override
     public <TSource> void insertDocument(String indexName, String documentUniqueId, TSource source) throws IOException {
         String jsonData = objectMapper.writeValueAsString(source);
-
         IndexRequest indexRequest = new IndexRequest(indexName);
         indexRequest.id(documentUniqueId);
         indexRequest.source(jsonData, XContentType.JSON);
-
         this.restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
     }
 
@@ -49,20 +46,15 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
         searchSourceBuilder.query(QueryBuilders.matchAllQuery());
         searchSourceBuilder.from(0);
         searchSourceBuilder.size(1000);
-
         SearchRequest searchRequest = new SearchRequest(indexName);
         searchRequest.source(searchSourceBuilder);
-
         SearchResponse searchResponse = this.restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-
-        return Stream
-                .of(searchResponse.getHits().getHits())
-                .map(hit -> convert(hit.getSourceAsString(), clazz))
-                .collect(Collectors.toList());
+        return Stream.of(searchResponse.getHits().getHits()).map(hit -> convert(hit.getSourceAsString(), clazz)).collect(Collectors.toList());
     }
 
     @SneakyThrows
     private <T> T convert(String json, Class<T> clazz) {
         return this.objectMapper.readValue(json, clazz);
     }
+
 }

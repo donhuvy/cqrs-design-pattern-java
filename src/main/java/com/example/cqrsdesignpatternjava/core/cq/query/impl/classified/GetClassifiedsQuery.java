@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetClassifiedsQuery implements Query {
+
     private String price;
     private String categoryId;
+
 }

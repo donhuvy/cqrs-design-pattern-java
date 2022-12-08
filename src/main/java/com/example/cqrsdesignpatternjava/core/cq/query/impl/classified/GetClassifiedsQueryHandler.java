@@ -22,4 +22,5 @@ public class GetClassifiedsQueryHandler implements QueryHandler<GetClassifiedsQu
     public List<Classified> handle(GetClassifiedsQuery query) throws Exception {
         return this.elasticsearchService.search("classifieds", Classified.class);
     }
+
 }

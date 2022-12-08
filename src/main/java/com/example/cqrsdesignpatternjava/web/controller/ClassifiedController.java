@@ -6,9 +6,12 @@ import com.example.cqrsdesignpatternjava.core.cq.command.result.CommandResult;
 import com.example.cqrsdesignpatternjava.core.cq.query.impl.classified.GetClassifiedsQuery;
 import com.example.cqrsdesignpatternjava.core.cq.query.impl.classified.GetClassifiedsQueryHandler;
 import com.example.cqrsdesignpatternjava.entity.Classified;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.List;

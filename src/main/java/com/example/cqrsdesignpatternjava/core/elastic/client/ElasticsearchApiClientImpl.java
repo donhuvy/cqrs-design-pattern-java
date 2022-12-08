@@ -11,15 +11,13 @@ public class ElasticsearchApiClientImpl implements ElasticsearchApiClient {
     private final RestHighLevelClient restHighLevelClient;
 
     public ElasticsearchApiClientImpl() {
-        restHighLevelClient = new RestHighLevelClient(
-                RestClient.builder(
-                        new HttpHost("localhost", 9200, "http"),
-                        new HttpHost("localhost", 9201, "http")));
+        restHighLevelClient = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http"), new HttpHost("localhost", 9201, "http")));
     }
 
     @Override
     public RestHighLevelClient getRestHighLevelClient() {
         return this.restHighLevelClient;
     }
+
 }
 

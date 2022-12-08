@@ -5,4 +5,5 @@ import org.elasticsearch.client.RestHighLevelClient;
 public interface ElasticsearchApiClient {
 
     RestHighLevelClient getRestHighLevelClient();
+
 }

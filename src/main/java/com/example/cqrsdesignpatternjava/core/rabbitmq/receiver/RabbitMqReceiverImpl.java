@@ -24,10 +24,7 @@ public class RabbitMqReceiverImpl implements RabbitMqReceiver {
     public void receive(String queueName, DeliverCallback deliverCallback) throws IOException, TimeoutException {
         Connection connection = rabbitMqServer.getConnection();
         Channel channel = rabbitMqServer.getChannel(connection);
-
         channel.queueDeclare(queueName, true, false, false, null);
-
-        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {
-        });
+        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
 }
